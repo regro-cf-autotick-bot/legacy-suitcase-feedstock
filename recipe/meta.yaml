@@ -12,20 +12,22 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - databroker
     - h5py
     - numpy
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - suitcase
     - suitcase.hdf5
